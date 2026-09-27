@@ -1,0 +1,16 @@
+[theme]
+   base = "dark"
+   primaryColor = "#1677FF"
+   backgroundColor = "#080A0D"
+   secondaryBackgroundColor = "#11151A"
+   textColor = "#FFFFFF"
+
+   [client]
+   toolbarMode = "minimal"
+   showErrorDetails = "none"
+
+   [browser]
+   gatherUsageStats = false
+
+   [server]
+   enableStaticServing = true
