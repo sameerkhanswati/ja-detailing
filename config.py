@@ -47,7 +47,8 @@ BUSINESS = {
 
 WHATSAPP_URL = f"https://wa.me/{BUSINESS['whatsapp_number']}"
 
-LOGO_PATH = IMAGES_DIR / "logo.png"
+# Logo: images/logo.png (or logo.png in the main folder if uploaded without folders)
+LOGO_PATH = IMAGES_DIR / "logo.png" if (IMAGES_DIR / "logo.png").is_file() else BASE_DIR / "logo.png"
 
 SEO = {
     "title": "JA Detailing London | Premium Car Detailing in London & Harlow",

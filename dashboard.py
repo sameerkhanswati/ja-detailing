@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 
 import services as svc
+from utils import page_file
 from models import MONTHS
 from ui import MONEY_COL, admin_page, empty_state, money, stat_cards, style_status
 from utils import today_london
@@ -31,10 +32,10 @@ stat_cards([
 ])
 
 c1, c2, c3, c4 = st.columns(4)
-c1.page_link("pages/jobs.py", label="New job", icon=":material/add_circle:")
-c2.page_link("pages/clients.py", label="New client", icon=":material/person_add:")
-c3.page_link("pages/payments.py", label="Record payment", icon=":material/payments:")
-c4.page_link("pages/enquiries.py", label=f"Enquiries ({ov['new_enquiries']} new)", icon=":material/inbox:")
+c1.page_link(page_file("pages/jobs.py"), label="New job", icon=":material/add_circle:")
+c2.page_link(page_file("pages/clients.py"), label="New client", icon=":material/person_add:")
+c3.page_link(page_file("pages/payments.py"), label="Record payment", icon=":material/payments:")
+c4.page_link(page_file("pages/enquiries.py"), label=f"Enquiries ({ov['new_enquiries']} new)", icon=":material/inbox:")
 
 st.divider()
 

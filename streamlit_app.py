@@ -21,6 +21,7 @@ import streamlit as st
 
 from auth import is_authenticated, logout
 from config import LOGO_PATH, SEO
+from utils import page_file
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("ja_detailing")
@@ -60,7 +61,7 @@ def _init_database() -> bool:
 
 db_ready = _init_database()
 
-home = st.Page("public/home.py", title="Website", icon=":material/language:", default=not is_authenticated())
+home = st.Page(page_file("public/home.py"), title="Website", icon=":material/language:", default=not is_authenticated())
 
 if is_authenticated():
     if not db_ready:
@@ -72,24 +73,24 @@ if is_authenticated():
 
     pages = {
         "Business": [
-            st.Page("pages/dashboard.py", title="Dashboard", icon=":material/space_dashboard:",
+            st.Page(page_file("pages/dashboard.py"), title="Dashboard", icon=":material/space_dashboard:",
                     url_path="admin", default=True),
-            st.Page("pages/enquiries.py", title="Enquiries", icon=":material/inbox:", url_path="enquiries"),
-            st.Page("pages/clients.py", title="Clients", icon=":material/group:", url_path="clients"),
-            st.Page("pages/jobs.py", title="Jobs", icon=":material/directions_car:", url_path="jobs"),
-            st.Page("pages/payments.py", title="Payments", icon=":material/payments:", url_path="payments"),
-            st.Page("pages/receipts.py", title="Receipts", icon=":material/receipt_long:", url_path="receipts"),
-            st.Page("pages/reports.py", title="Reports", icon=":material/monitoring:", url_path="reports"),
+            st.Page(page_file("pages/enquiries.py"), title="Enquiries", icon=":material/inbox:", url_path="enquiries"),
+            st.Page(page_file("pages/clients.py"), title="Clients", icon=":material/group:", url_path="clients"),
+            st.Page(page_file("pages/jobs.py"), title="Jobs", icon=":material/directions_car:", url_path="jobs"),
+            st.Page(page_file("pages/payments.py"), title="Payments", icon=":material/payments:", url_path="payments"),
+            st.Page(page_file("pages/receipts.py"), title="Receipts", icon=":material/receipt_long:", url_path="receipts"),
+            st.Page(page_file("pages/reports.py"), title="Reports", icon=":material/monitoring:", url_path="reports"),
         ],
         "Account": [
-            st.Page("pages/settings.py", title="Settings", icon=":material/settings:", url_path="settings"),
+            st.Page(page_file("pages/settings.py"), title="Settings", icon=":material/settings:", url_path="settings"),
             home,
             st.Page(_logout, title="Logout", icon=":material/logout:", url_path="logout"),
         ],
     }
     nav = st.navigation(pages, position="sidebar")
 else:
-    login = st.Page("pages/admin_login.py", title="Admin Login", icon=":material/lock:", url_path="admin")
+    login = st.Page(page_file("pages/admin_login.py"), title="Admin Login", icon=":material/lock:", url_path="admin")
     nav = st.navigation([home, login], position="hidden")
 
 nav.run()

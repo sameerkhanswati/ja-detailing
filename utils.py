@@ -21,6 +21,19 @@ from config import BUSINESS
 log = logging.getLogger("ja_detailing.utils")
 
 LONDON = ZoneInfo("Europe/London")
+PROJECT_DIR = Path(__file__).resolve().parent
+
+
+def page_file(rel_path: str) -> str:
+    """Return 'pages/x.py' if it exists, else 'x.py' in the main folder.
+
+    Lets the app run whether files are kept in their folders or were uploaded
+    flat (e.g. via GitHub's web uploader).
+    """
+    if (PROJECT_DIR / rel_path).is_file():
+        return rel_path
+    flat = Path(rel_path).name
+    return flat if (PROJECT_DIR / flat).is_file() else rel_path
 MAX_MONEY = 1_000_000  # £1m sanity ceiling for any single amount
 
 

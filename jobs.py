@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st
 
 import services as svc
+from utils import page_file
 from models import JOB_STATUSES, PAYMENT_METHODS, PAYMENT_STATUSES, JobInput, PaymentInput, ValidationError
 from ui import (
     admin_page,
@@ -92,7 +93,7 @@ tab_list, tab_new = st.tabs(["All jobs", "New job"])
 with tab_new:
     if not clients:
         empty_state("Add a client first - jobs are linked to a client.", "fa-solid fa-user-plus")
-        st.page_link("pages/clients.py", label="Go to Clients", icon=":material/group:")
+        st.page_link(page_file("pages/clients.py"), label="Go to Clients", icon=":material/group:")
     else:
         job, initial, method, clicked = job_editor("adm_newjob")
         if clicked:
