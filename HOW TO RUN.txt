@@ -1,0 +1,20 @@
+JA DETAILING LONDON - HOW TO RUN
+================================
+
+1) PUT YOUR LOGO IN:   images\logo.png
+
+2) START THE WEBSITE:  double-click  START.bat
+   - First time only it installs everything (1-3 minutes).
+   - Your browser opens http://localhost:8501
+   - Keep the black window open while using the site. Close it to stop.
+
+3) VIEW ON YOUR PHONE (same Wi-Fi as the computer):
+   - In the black window look for:  Network URL: http://192.168.x.x:8501
+   - Type that address into your phone's browser.
+   - If Windows asks about the firewall, click "Allow access".
+
+4) ADMIN LOGIN (once): double-click  SETUP_ADMIN.bat
+   - Choose a username and password (typing the password is hidden).
+   - Restart START.bat, then open http://localhost:8501/admin
+
+Need Python? https://www.python.org/downloads/  (tick "Add python.exe to PATH")

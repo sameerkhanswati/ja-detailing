@@ -1,0 +1,19 @@
+# Secrets & data - never commit
+.streamlit/secrets.toml
+data/*.db
+data/*.db-*
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# generated optimised images
+static/opt-*
