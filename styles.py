@@ -414,8 +414,11 @@ a.contact-card:hover { border-color: var(--accent); transform: translateY(-4px);
 
 ADMIN_CSS = FONT_IMPORTS + BASE + """
 [data-testid="stHeader"] { background: transparent; }
-[data-testid="stToolbar"] { display: none !important; }
-[data-testid="stMainBlockContainer"], .block-container { max-width: 1320px !important; padding-top: 2.2rem !important; }
+[data-testid="stMainMenu"], [data-testid="stAppDeployButton"] { display: none !important; }
+[data-testid="stMainBlockContainer"], .block-container { max-width: 1320px !important; padding-top: 3rem !important; }
+/* Admin top menu */
+[data-testid="stButtonGroup"] { margin-bottom: 6px; }
+[data-testid="stButtonGroup"] button { border-radius: 8px !important; }
 
 [data-testid="stSidebar"] { background: #0C0F13 !important; border-right: 1px solid var(--line); }
 [data-testid="stSidebarNav"] a { border-radius: 8px; }

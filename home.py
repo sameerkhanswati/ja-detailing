@@ -509,9 +509,13 @@ def render_footer() -> None:
 # tags in makes Streamlit drop the styles and the site appears unstyled.
 st.html(f"<style>{PUBLIC_CSS}</style>")
 if is_authenticated():
-    # Admin previewing the website: keep the admin sidebar reachable.
-    st.html("<style>[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl'],"
-            "[data-testid='stHeader']{display:flex !important}</style>")
+    # Admin previewing the website: floating "Back to admin" button (bottom-left).
+    from utils import page_file
+
+    st.html("<style>[data-testid='stPageLink']{position:fixed;left:18px;bottom:18px;z-index:1001;"
+            "background:#1677FF;border-radius:10px;padding:2px 10px;box-shadow:0 10px 26px -8px rgba(0,0,0,.7)}"
+            "[data-testid='stPageLink'] p{color:#fff !important;font-weight:600}</style>")
+    st.page_link(page_file("pages/dashboard.py"), label="Back to admin", icon=":material/arrow_back:")
 section(render_seo)
 section(render_nav)
 section(render_hero)

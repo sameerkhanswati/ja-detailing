@@ -15,10 +15,44 @@ from styles import ADMIN_CSS
 from utils import esc, gbp
 
 
+# Admin menu shown at the top of every admin page (works on desktop and phones,
+# so the admin never depends on the collapsible sidebar).
+ADMIN_MENU = [
+    ("Dashboard", "pages/dashboard.py"),
+    ("Enquiries", "pages/enquiries.py"),
+    ("Clients", "pages/clients.py"),
+    ("Jobs", "pages/jobs.py"),
+    ("Payments", "pages/payments.py"),
+    ("Receipts", "pages/receipts.py"),
+    ("Reports", "pages/reports.py"),
+    ("Settings", "pages/settings.py"),
+    ("Website", "public/home.py"),
+    ("Logout", None),
+]
+
+
+def admin_menu(current: str) -> None:
+    from auth import logout
+    from utils import page_file
+
+    labels = [label for label, _ in ADMIN_MENU]
+    choice = st.segmented_control(
+        "Admin menu", labels, default=current if current in labels else None,
+        key=f"adm_menu_{current}", label_visibility="collapsed",
+    )
+    if choice and choice != current:
+        target = dict(ADMIN_MENU)[choice]
+        if target is None:  # Logout
+            logout()
+            st.switch_page(page_file("public/home.py"))
+        st.switch_page(page_file(target))
+
+
 def admin_page(title: str, subtitle: str = "", kicker: str = "JA Detailing · Admin") -> None:
-    """Auth guard + styles + page header. Call first on every admin page."""
+    """Auth guard + styles + menu + page header. Call first on every admin page."""
     require_admin()
     st.html(f"<style>{ADMIN_CSS}</style>")
+    admin_menu(title)
     st.html(f"""
     <div class="adm-head">
       <div><div class="adm-kicker">{esc(kicker)}</div><h1>{esc(title)}</h1>
