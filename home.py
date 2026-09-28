@@ -209,8 +209,6 @@ def render_services() -> None:
             </div>
           </div>
         </article>""")
-    note = ('<div class="demo-note"><i class="fa-regular fa-image" aria-hidden="true"></i>'
-            'Illustrative stock photography</div>' if DEMO_IMAGERY_NOTICE else "")
     st.html(f"""
     <section id="services" class="section" aria-labelledby="services-h">
       <div class="section-head">
@@ -218,7 +216,6 @@ def render_services() -> None:
         <h2 id="services-h">Detailing Services</h2>
         <p>From a refreshed interior to fully corrected and protected paintwork, every service is
         tailored to your vehicle. Tell us about your car and we'll come back with a quote.</p>
-        {note}
       </div>
       <div class="svc-grid">{''.join(cards)}</div>
     </section>
@@ -282,7 +279,7 @@ def render_before_after() -> None:
                     before_alt=esc(pair["before"]["alt"]),
                     after_alt=esc(pair["after"]["alt"]),
                     title=esc(pair["title"]),
-                    demo='<span class="demo">Demo imagery</span>' if DEMO_IMAGERY_NOTICE else "",
+                    demo="",
                 )
                 components.html(html_doc, height=304)
             except Exception:
